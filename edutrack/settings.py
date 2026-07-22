@@ -12,7 +12,7 @@ SECRET_KEY = os.getenv(
     "django-insecure-edutrack-local-development-key",
 )
 
-DEBUG = os.getenv("DEBUG", "True").lower() == "true"
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = [
     host.strip()
