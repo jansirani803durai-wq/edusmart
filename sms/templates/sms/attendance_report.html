@@ -1,0 +1,70 @@
+#Q34 and 35 — Create Report Template
+{% extends 'sms/base.html' %}
+
+{% block content %}
+
+<section class="card">
+
+    <h1>{{ batch.name }} Attendance Report</h1>
+
+    <div class="table">
+
+        <table>
+
+            <tr>
+                <th>Student</th>
+                <th>Present</th>
+                <th>Absent</th>
+                <th>Late</th>
+                <th>Details</th>
+            </tr>
+
+            {% for s in students %}
+
+            <tr>
+
+                <td>{{ s.full_name }}</td>
+
+                <td>
+                    <span class="present">
+                        {{ s.present_count }}
+                    </span>
+                </td>
+
+                <td>
+                    <span class="absent">
+                        {{ s.absent_count }}
+                    </span>
+                </td>
+
+                <td>
+                    <span class="late">
+                        {{ s.late_count }}
+                    </span>
+                </td>
+
+                <td>
+                    <a href="{% url 'student_attendance_report' s.id %}">
+                        Open
+                    </a>
+                </td>
+
+            </tr>
+
+            {% empty %}
+
+            <tr>
+                <td colspan="5">
+                    No students.
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}

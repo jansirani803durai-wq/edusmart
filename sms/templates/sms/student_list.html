@@ -1,0 +1,105 @@
+
+{% extends "sms/base.html" %}
+
+{% block content %}
+
+<section class="card">
+
+    <div class="head">
+
+        <h1>Student List</h1>
+
+        <a class="btn" href="{% url 'register_student' %}">
+            Add Student
+        </a>
+
+    </div>
+
+    <div class="table">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Batch</th>
+                    <th>Courses</th>
+                    <th>Report</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for s in students %}
+
+                <tr>
+
+                    <td>
+                        <a href="{% url 'student_detail' s.id %}">
+                            {{ s.full_name }}
+                        </a>
+                    </td>
+
+                    <td>
+                        {{ s.email }}
+                    </td>
+
+                    <td>
+                        {{ s.phone_number }}
+                    </td>
+
+                    <td>
+                        {{ s.batch }}
+                    </td>
+
+                    <td>
+
+                        {% for c in s.courses.all %}
+
+                            <span class="tag">
+                                {{ c.name }}
+                            </span>
+
+                        {% empty %}
+
+                            -
+
+                        {% endfor %}
+
+                    </td>
+                
+                    <td>
+
+                        <a href="{% url 'student_attendance_report' s.id %}">
+                            View
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="6">
+                        No students found.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}

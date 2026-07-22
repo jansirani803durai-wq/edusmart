@@ -1,0 +1,1 @@
+{% extends 'sms/base.html' %}{% block content %}<section class="card"><div class="head"><h1>Course List</h1><a class="btn" href="{% url 'create_course' %}">Create Course</a></div><div class="grid">{% for c in courses %}<article><h3>{{ c.name }}</h3><p>{{ c.description }}</p></article>{% empty %}<p>No courses.</p>{% endfor %}</div></section>{% endblock %}

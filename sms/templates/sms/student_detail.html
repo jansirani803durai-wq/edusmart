@@ -1,0 +1,52 @@
+{% extends "sms/base.html" %}
+
+{% block content %}
+
+<section class="card">
+
+    <h1>{{ student.full_name }}</h1>
+
+    <p>
+        {{ student.email }} |
+        {{ student.phone_number }}
+    </p>
+
+    <p>
+        <strong>Batch:</strong>
+        {{ student.batch }}
+    </p>
+
+    <h2>Courses & Certificates</h2>
+
+    <div class="grid">
+
+        {% for c in student.courses.all %}
+
+        <article>
+
+            <h3>{{ c.name }}</h3>
+
+            <p>
+                {{ c.description|default:"No description." }}
+            </p>
+
+            <a
+                class="btn"
+                href="{% url 'issue_certificate' student.id c.id %}"
+            >
+                Issue Certificate
+            </a>
+
+        </article>
+
+        {% empty %}
+
+        <p>No courses assigned.</p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

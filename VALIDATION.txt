@@ -1,0 +1,4 @@
+Validation completed:
+- Python syntax compilation passed for project files.
+- Full Django runtime tests could not be executed in this build environment because Django packages are not installed and internet package installation is unavailable.
+- Run `pip install -r requirements.txt`, `python manage.py check`, and `python manage.py test` locally before deployment.
